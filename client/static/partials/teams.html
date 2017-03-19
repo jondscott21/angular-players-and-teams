@@ -1,0 +1,23 @@
+<div ng-controller="TeamsController as TC">
+  <form>
+    <div class="input-field">
+      <input type="text" id="name" ng-model="TC.team.name">
+      <label for="name">Name</label>
+    </div>
+    <input type="submit" class="btn black right" value="Add New Team" ng-click="TC.addTeam()">
+  </form>
+  <table class="striped centered">
+    <thead>
+    <tr>
+      <th data-field="name">Team Name</th>
+      <th data-field="lang">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="team in TC.teams">
+      <td ng-bind="team.name"></td>
+      <td><input type="submit" class="btn red" value="Remove Team" ng-click="TC.deleteTeam(team)"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

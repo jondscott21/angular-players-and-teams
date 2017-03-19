@@ -1,0 +1,32 @@
+<div ng-controller="AssociationsController as AC">
+  <form>
+    <div class="input-field col s3">
+      <select ng-model="playerData" id="player_name" class="browser-default" style="background: lightblue">
+        <option disabled selected value="">Select A Player</option>
+        <option ng-repeat="player in AC.players" ng-value="player" ng-bind="player.name"></option>
+      </select>
+    </div>
+    <div class="input-field col s3 offset-s1">
+      <select id="team_name" ng-model="teamData" class="browser-default" style="background: lightblue">
+        <option disabled selected value="">Select A Team</option>
+        <option ng-repeat="team in AC.teams" ng-value="team" ng-bind="team.name"></option>
+      </select>
+    </div>
+    <input type="submit" class="btn black right" value="Add Player to Team" ng-click="AC.joinPlayer(playerData, teamData)">
+  </form>
+  <table class="striped">
+    <thead>
+    <tr>
+      <th data-field="player">Player Name</th>
+      <th data-field="team">Team Name</th>
+    </tr>
+    </thead>
+    <tbody ng-repeat="team in AC.teams" ng-if="team.players.length > 0">
+    <tr ng-repeat="player in team.players">
+      <td ng-bind="player.name"></td>
+      <td ng-bind="team.name"></td>
+      <td><input type="submit" class="btn red" value="Remove Team" ng-click="AC.deleteTeam(player, team)"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
